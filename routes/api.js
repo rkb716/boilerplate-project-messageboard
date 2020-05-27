@@ -63,7 +63,6 @@ module.exports = function (app) {
               console.log("board has no threads");
               return res.json([]);
             } else {
-              console.log("Current Board: " + board);
               let maxThreads = Math.min(board.threads.length, 10);
               let threads = board.threads.slice(0, maxThreads);
               for (let i = 0; i < threads.length; i++) {
@@ -99,7 +98,6 @@ module.exports = function (app) {
               if (err) {
                 console.log(err);
               }
-              console.log("redirecting");
               res.redirect('/b/' + boardName);
             });
           });
@@ -118,10 +116,6 @@ module.exports = function (app) {
           if (board == null) {
             return res.json({});
           } else {
-            console.log("check");
-            console.log(threadId);
-            console.log(board.threads);
-            console.log("check end");
             let thread = board.threads.id(threadId);
             if (thread == null) {
               console.log("thread not found on this board");
@@ -188,7 +182,6 @@ module.exports = function (app) {
     .get(function (req, res) {
       let boardName = req.params.board;
       let threadId = req.query.thread_id;
-      console.log("Thread id: " + threadId);
       BOARD.findOne({ name: boardName }, function (err, board) {
         if (err) {
           console.log(err);
