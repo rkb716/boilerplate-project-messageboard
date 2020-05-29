@@ -98,7 +98,7 @@ module.exports = function (app) {
               if (err) {
                 console.log(err);
               }
-              res.redirect('/b/' + boardName);
+              res.redirect('/b/' + boardName + '/' + newThread._id);
             });
           });
         }
